@@ -1,56 +1,95 @@
 from django.db import models
 
 
-class Task(models.Model):
-    title = models.CharField(max_length=200)
-    completed = models.BooleanField(default=False, blank=True, null=True)
+class AttributeName(models.Model):
+    id = models.IntegerField(primary_key=True)
+    objects = None
+    nazev = models.CharField(max_length=200, blank=True)
+    kod = models.CharField(max_length=200, blank=True)
+    zobrazit = models.BooleanField(blank=True)
 
     def __str__(self):
-        return self.title
-
-
-class AttributeName(models.Model):
-    nazev = models.CharField(max_length=200)
-    kod = models.CharField(max_length=200)
-    zobrazit = models.BooleanField()
+        return self
 
 
 class AttributeValue(models.Model):
-    hodnota = models.CharField(max_length=200)
+    id = models.IntegerField(primary_key=True)
+    objects = None
+    hodnota = models.CharField(max_length=200, blank=False)
+
+    def __str__(self):
+        return self
 
 
 class Attribute(models.Model):
-    nazev_atributu_id = models.IntegerField()
-    hodnota_atributu_id = id
+    id = models.IntegerField(primary_key=True)
+    objects = None
+    nazev_atributu_id = models.IntegerField(blank=False)
+    hodnota_atributu_id = models.IntegerField(blank=False)
+
+    def __str__(self):
+        return self
 
 
 class Product(models.Model):
-    nazev = models.CharField(max_length=200)
-    description = models.TextField()
-    cena = models.CharField(max_length=200)
-    mena = models.CharField(max_length=200)
-    published_on = models.DateTimeField()
-    is_published = models.BooleanField()
+    objects = None
+    id = models.IntegerField(primary_key=True)
+    nazev = models.CharField(max_length=200, blank=True)
+    description = models.TextField(blank=True)
+    cena = models.CharField(max_length=200, blank=False)
+    mena = models.CharField(max_length=200, blank=True)
+    published_on = models.DateTimeField(blank=True)
+    is_published = models.BooleanField(blank=True)
+
+    def __str__(self):
+        return self
 
 
 class ProductAttributes(models.Model):
-    attribute = models.IntegerField()
-    product = models.IntegerField()
+    objects = None
+    id = models.IntegerField(primary_key=True)
+    attribute = models.IntegerField(blank=False)
+    product = models.IntegerField(blank=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.data = None
+
+    def __str__(self):
+        return self
 
 
 class Image(models.Model):
-    obrazek = models.ImageField()
-    nazev = models.CharField(max_length=200)
+    objects = None
+    id = models.IntegerField(primary_key=True)
+    obrazek = models.ImageField(blank=False)
+    nazev = models.CharField(max_length=200, blank=True)
+
+    def __str__(self):
+        return self
 
 
 class ProductImage(models.Model):
-    product = models.IntegerField()
-    obrazek_id = id
-    nazev = models.CharField(max_length=200)
+    objects = None
+    id = models.IntegerField(primary_key=True)
+    product = models.IntegerField(blank=False)
+    obrazek_id = models.IntegerField(blank=False)
+    nazev = models.CharField(max_length=200, blank=False)
+
+    def __str__(self):
+        return self
 
 
 class Catalog(models.Model):
-    nazev = models.CharField(max_length=200)
-    obrazek_id = models.IntegerField()
-    #products_ids = models.CommaSeparatedIntegerField()
-    #attributes_ids = models.CommaSeparatedIntegerField()
+    objects = None
+    id = models.IntegerField(primary_key=True)
+    nazev = models.CharField(max_length=200, blank=True)
+    obrazek_id = models.IntegerField(blank=True)
+
+    def __str__(self):
+        return self
+
+
+class Catalog_2(models.Model):
+    products_ids = models.ForeignKey(Catalog, null=True, on_delete=models.SET_NULL, related_name="first")
+    attributes_ids = models.ForeignKey(Catalog, null=True, on_delete=models.SET_NULL, related_name="second")
