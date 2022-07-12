@@ -6,7 +6,7 @@ class AttributeName(models.Model):
     objects = None
     nazev = models.CharField(max_length=200, blank=True)
     kod = models.CharField(max_length=200, blank=True)
-    zobrazit = models.BooleanField(blank=True)
+    zobrazit = models.BooleanField(default=False)
 
     def __str__(self):
         return self

@@ -1,3 +1,10 @@
+import json
+import json.encoder
+import os
+
+from rest_framework.decorators import parser_classes
+from rest_framework.parsers import JSONParser
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import AttributeNameS
@@ -16,6 +23,9 @@ from .serializers import ProductImageS
 from .models import ProductImage
 from .serializers import CatalogS
 from .models import Catalog
+
+
+# import json
 
 
 # AttributeName
@@ -143,12 +153,73 @@ def CatalogGetDet(request, pk):
     serializer = CatalogS(object, many=False)
     return Response(serializer.data)
 
+
+#
+@api_view(['POST'])
+@parser_classes([JSONParser])
+def PostData(request):
+    finalAN: list = []
+    data = request.data
+    for x in data:
+        for b in x:
+            if "AttributeName" == b:
+                # print(type(x['AttributeName']))
+                finalAN.append(x['AttributeName'])
+    #     if "AttributeName" in x.keys():
+    serializer = AttributeNameS(data=finalAN, many=True)
+    print(finalAN)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+    return Response(serializer.data)
+
 # @api_view(['POST'])
-# def AttributeNamePost(request):
-#     serializer = AttributeNameS(data=request.data)
+# def PostData(request):
+#     body_unicode = request.body.decode('utf-8')
+#     data = json.load(body_unicode)
+#     for x in data:
+#         if "AttributeName" in x.keys():
+#             #data = data["AttributeName"]
+#             serializer = AttributeNameS(data=request.data)
+#             serializer.is_valid(raise_exception=True)
+#             serializer.save()
+#             return Response(serializer.data["AttributeName"])
+# elif json.dumps(x).key == 'AttributeValue':
+#     serializer = AttributeValueS(data=data)
 #     serializer.is_valid(raise_exception=True)
 #     serializer.save()
 #     return Response(serializer.data)
+# elif json.dumps(x).key == 'Attribute':
+#     serializer = AttributeS(data=data)
+#     serializer.is_valid(raise_exception=True)
+#     serializer.save()
+#     return Response(serializer.data)
+# elif json.dumps(x).key == 'Product':
+#     serializer = ProductS(data=data)
+#     serializer.is_valid(raise_exception=True)
+#     serializer.save()
+#     return Response(serializer.data)
+# elif json.dumps(x).key == 'ProductAttributes':
+#     serializer = ProductAttributesS(data=data)
+#     serializer.is_valid(raise_exception=True)
+#     serializer.save()
+#     return Response(serializer.data)
+# elif json.dumps(x).key == 'Image':
+#     serializer = ImageS(data=data)
+#     serializer.is_valid(raise_exception=True)
+#     serializer.save()
+#     return Response(serializer.data)
+# elif json.dumps(x).key == 'ProductImage':
+#     serializer = ProductImageS(data=data)
+#     serializer.is_valid(raise_exception=True)
+#     serializer.save()
+#     return Response(serializer.data)
+# elif json.dumps(x).key == 'Catalog':
+#     serializer = CatalogS(data=data)
+#     serializer.is_valid(raise_exception=True)
+#     serializer.save()
+#     return Response(serializer.data)
+# else:
+#     print("Wrong format of data")
 
 # @api_view(['DELETE'])
 # def taskDelete(request, pk):
