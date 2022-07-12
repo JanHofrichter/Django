@@ -159,18 +159,28 @@ def CatalogGetDet(request, pk):
 @parser_classes([JSONParser])
 def PostData(request):
     finalAN: list = []
+    finalAV: list = []
     data = request.data
     for x in data:
         for b in x:
             if "AttributeName" == b:
-                # print(type(x['AttributeName']))
                 finalAN.append(x['AttributeName'])
-    #     if "AttributeName" in x.keys():
-    serializer = AttributeNameS(data=finalAN, many=True)
+
+            elif "AttributeValue" == b:
+                finalAV.append(x['AttributeValue'])
+
+    serializer1 = AttributeNameS(data=finalAN, many=True)
     print(finalAN)
-    serializer.is_valid(raise_exception=True)
-    serializer.save()
-    return Response(serializer.data)
+    serializer1.is_valid(raise_exception=True)
+    serializer1.save()
+    return Response(serializer1.data)
+
+    serializer2 = AttributeValueS(data=finalAV, many=True)
+    print(finalAV)
+    serializer2.is_valid(raise_exception=True)
+    serializer2.save()
+    return Response(serializer2.data)
+
 
 # @api_view(['POST'])
 # def PostData(request):
