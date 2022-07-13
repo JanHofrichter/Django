@@ -160,7 +160,12 @@ def CatalogGetDet(request, pk):
 def PostData(request):
     finalAN: list = []
     finalAV: list = []
+    # finalA: list = []
+    finalP: list = []
+    finalPA: list = []
+    finalI: list = []
     data = request.data
+
     for x in data:
         for b in x:
             if "AttributeName" == b:
@@ -169,18 +174,43 @@ def PostData(request):
             elif "AttributeValue" == b:
                 finalAV.append(x['AttributeValue'])
 
+            # elif "Attribute" == b:
+            #     finalA.append(x['Attribute'])
+
+            elif "Product" == b:
+                finalP.append(x['Product'])
+
+            elif "ProductAttributes" == b:
+                finalPA.append(x['ProductAttributes'])
+
+            elif "Image" == b:
+                finalI.append(x['Image'])
+
     serializer1 = AttributeNameS(data=finalAN, many=True)
-    print(finalAN)
     serializer1.is_valid(raise_exception=True)
     serializer1.save()
-    return Response(serializer1.data)
+    # return Response(serializer1.data)
 
     serializer2 = AttributeValueS(data=finalAV, many=True)
-    print(finalAV)
     serializer2.is_valid(raise_exception=True)
     serializer2.save()
-    return Response(serializer2.data)
 
+    # return Response(serializer1.data)
+    # serializer3 = AttributeS(data=finalA, many=True)
+    # serializer3.is_valid(raise_exception=True)
+    # serializer3.save()
+
+    serializer4 = ProductS(data=finalP, many=True)
+    serializer4.is_valid(raise_exception=True)
+    serializer4.save()
+
+    serializer5 = ProductAttributesS(data=finalPA, many=True)
+    serializer5.is_valid(raise_exception=True)
+    serializer5.save()
+
+    serializer6 = ImageS(data=finalI, many=True)
+    serializer6.is_valid(raise_exception=True)
+    serializer6.save()
 
 # @api_view(['POST'])
 # def PostData(request):

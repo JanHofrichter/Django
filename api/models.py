@@ -24,8 +24,8 @@ class AttributeValue(models.Model):
 class Attribute(models.Model):
     id = models.IntegerField(primary_key=True)
     objects = None
-    nazev_atributu_id = models.IntegerField(blank=False)
-    hodnota_atributu_id = models.IntegerField(blank=False)
+    nazev_atributu_id = models.IntegerField()
+    hodnota_atributu_id = models.IntegerField()
 
     def __str__(self):
         return self
@@ -38,7 +38,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     cena = models.CharField(max_length=200, blank=False)
     mena = models.CharField(max_length=200, blank=True)
-    published_on = models.DateTimeField(blank=True)
+    published_on = models.DateTimeField(null=True, blank=True)
     is_published = models.BooleanField(blank=True)
 
     def __str__(self):
