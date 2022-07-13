@@ -154,6 +154,14 @@ def CatalogGetDet(request, pk):
     return Response(serializer.data)
 
 
+def mergeID(x):
+    data = x
+    dict_1 = {item["id"]: item for item in data}
+    for d in data:
+        dict_1[d["id"]].update(d)
+    return list(dict_1.values())
+
+
 #
 @api_view(['POST'])
 @parser_classes([JSONParser])
@@ -194,12 +202,7 @@ def PostData(request):
         elif "Catalog" in element:
             final_c.append(element['Catalog'])
 
-    data = final_an
-    dict_1 = {item["id"]: item for item in data}
-    for d in data:
-        dict_1[d["id"]].update(d)
-    final_an = list(dict_1.values())
-    serializer1 = AttributeNameS(data=final_an, many=True)
+    serializer1 = AttributeNameS(data=mergeID(final_an), many=True)
     serializer1.is_valid(raise_exception=True)
     serializer1.save()
 
