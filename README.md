@@ -23,10 +23,4 @@ Get all objects:
 ```
 curl -X GET http://localhost:8000
 ```
-Get all objects with name Product:
-```
-curl -X GET http://localhost:8000/detail/Product/ 
-```
-Get data from object with name Attribute and ID 9:
-```
-curl -X GET http://localhost:8000/detail/Attribute/9  
+
