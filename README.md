@@ -19,8 +19,5 @@ python manage.py runserver
 Then navigate to http://localhost:8000
 
 ## Requests
-Get all objects:
-```
-curl -X GET http://localhost:8000
-```
+
 
