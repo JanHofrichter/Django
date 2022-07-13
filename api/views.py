@@ -201,6 +201,7 @@ def PostData(request):
     serializer2 = AttributeValueS(data=finalAV, many=True)
     serializer2.is_valid(raise_exception=True)
     serializer2.save()
+
     # django.db.utils.OperationalError: table api_attribute has no column named hodnota_atributu_id
     serializer3 = AttributeS(data=finalA, many=True)
     serializer3.is_valid(raise_exception=True)
@@ -221,7 +222,7 @@ def PostData(request):
     serializer7 = ProductImageS(data=finalPI, many=True)
     serializer7.is_valid(raise_exception=True)
     serializer7.save()
-
+    return Response("OK")
     # serializer8 = CatalogS(data=finalC, many=True)
     # serializer8.is_valid(raise_exception=True)
     # serializer8.save()
