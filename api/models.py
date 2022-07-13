@@ -24,11 +24,12 @@ class AttributeValue(models.Model):
 class Attribute(models.Model):
     id = models.IntegerField(primary_key=True)
     objects = None
-    nazev_atributu_id = models.IntegerField()
     hodnota_atributu_id = models.IntegerField()
+    nazev_atributu_id = models.IntegerField()
 
     def __str__(self):
         return self
+
 
 
 class Product(models.Model):
@@ -62,7 +63,7 @@ class ProductAttributes(models.Model):
 class Image(models.Model):
     objects = None
     id = models.IntegerField(primary_key=True)
-    obrazek = models.ImageField(blank=False)
+    obrazek = models.URLField(blank=False)
     nazev = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
@@ -84,7 +85,7 @@ class Catalog(models.Model):
     objects = None
     id = models.IntegerField(primary_key=True)
     nazev = models.CharField(max_length=200, blank=True)
-    obrazek_id = models.IntegerField(blank=True)
+    obrazek_id = models.IntegerField(blank=True, null=False)
 
     def __str__(self):
         return self

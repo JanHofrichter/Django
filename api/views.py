@@ -160,50 +160,56 @@ def CatalogGetDet(request, pk):
 def PostData(request):
     finalAN: list = []
     finalAV: list = []
-    # finalA: list = []
+    finalA: list = []
     finalP: list = []
     finalPA: list = []
     finalI: list = []
+    finalPI: list = []
+    finalC: list = []
+
     data = request.data
 
-    for x in data:
-        for b in x:
-            if "AttributeName" == b:
-                finalAN.append(x['AttributeName'])
+    for object in data:
+        if "AttributeName" in object:
+            finalAN.append(object['AttributeName'])
 
-            elif "AttributeValue" == b:
-                finalAV.append(x['AttributeValue'])
+        elif "AttributeValue" in object:
+            finalAV.append(object['AttributeValue'])
 
-            # elif "Attribute" == b:
-            #     finalA.append(x['Attribute'])
+        elif "Attribute" in object:
+            finalA.append(object['Attribute'])
 
-            elif "Product" == b:
-                finalP.append(x['Product'])
+        elif "Product" in object:
+            finalP.append(object['Product'])
 
-            elif "ProductAttributes" == b:
-                finalPA.append(x['ProductAttributes'])
+        elif "ProductAttributes" in object:
+            finalPA.append(object['ProductAttributes'])
 
-            elif "Image" == b:
-                finalI.append(x['Image'])
+        elif "Image" in object:
+            finalI.append(object['Image'])
+
+        elif "ProductImage" in object:
+            finalPI.append(object['ProductImage'])
+
+        elif "Catalog" in object:
+            finalC.append(object['Catalog'])
 
     serializer1 = AttributeNameS(data=finalAN, many=True)
     serializer1.is_valid(raise_exception=True)
     serializer1.save()
-    # return Response(serializer1.data)
 
     serializer2 = AttributeValueS(data=finalAV, many=True)
     serializer2.is_valid(raise_exception=True)
     serializer2.save()
-
-    # return Response(serializer1.data)
-    # serializer3 = AttributeS(data=finalA, many=True)
-    # serializer3.is_valid(raise_exception=True)
-    # serializer3.save()
+    # django.db.utils.OperationalError: table api_attribute has no column named hodnota_atributu_id
+    serializer3 = AttributeS(data=finalA, many=True)
+    serializer3.is_valid(raise_exception=True)
+    serializer3.save()
 
     serializer4 = ProductS(data=finalP, many=True)
     serializer4.is_valid(raise_exception=True)
     serializer4.save()
-
+    # Field 'id' expected a number but got ()
     serializer5 = ProductAttributesS(data=finalPA, many=True)
     serializer5.is_valid(raise_exception=True)
     serializer5.save()
@@ -212,57 +218,10 @@ def PostData(request):
     serializer6.is_valid(raise_exception=True)
     serializer6.save()
 
-# @api_view(['POST'])
-# def PostData(request):
-#     body_unicode = request.body.decode('utf-8')
-#     data = json.load(body_unicode)
-#     for x in data:
-#         if "AttributeName" in x.keys():
-#             #data = data["AttributeName"]
-#             serializer = AttributeNameS(data=request.data)
-#             serializer.is_valid(raise_exception=True)
-#             serializer.save()
-#             return Response(serializer.data["AttributeName"])
-# elif json.dumps(x).key == 'AttributeValue':
-#     serializer = AttributeValueS(data=data)
-#     serializer.is_valid(raise_exception=True)
-#     serializer.save()
-#     return Response(serializer.data)
-# elif json.dumps(x).key == 'Attribute':
-#     serializer = AttributeS(data=data)
-#     serializer.is_valid(raise_exception=True)
-#     serializer.save()
-#     return Response(serializer.data)
-# elif json.dumps(x).key == 'Product':
-#     serializer = ProductS(data=data)
-#     serializer.is_valid(raise_exception=True)
-#     serializer.save()
-#     return Response(serializer.data)
-# elif json.dumps(x).key == 'ProductAttributes':
-#     serializer = ProductAttributesS(data=data)
-#     serializer.is_valid(raise_exception=True)
-#     serializer.save()
-#     return Response(serializer.data)
-# elif json.dumps(x).key == 'Image':
-#     serializer = ImageS(data=data)
-#     serializer.is_valid(raise_exception=True)
-#     serializer.save()
-#     return Response(serializer.data)
-# elif json.dumps(x).key == 'ProductImage':
-#     serializer = ProductImageS(data=data)
-#     serializer.is_valid(raise_exception=True)
-#     serializer.save()
-#     return Response(serializer.data)
-# elif json.dumps(x).key == 'Catalog':
-#     serializer = CatalogS(data=data)
-#     serializer.is_valid(raise_exception=True)
-#     serializer.save()
-#     return Response(serializer.data)
-# else:
-#     print("Wrong format of data")
+    serializer7 = ProductImageS(data=finalPI, many=True)
+    serializer7.is_valid(raise_exception=True)
+    serializer7.save()
 
-# @api_view(['DELETE'])
-# def taskDelete(request, pk):
-#     object = AttributeName.objects.get(id=pk)
-#     object.delete()
-#     return Response('Item succsesfully delete!')
+    # serializer8 = CatalogS(data=finalC, many=True)
+    # serializer8.is_valid(raise_exception=True)
+    # serializer8.save()
