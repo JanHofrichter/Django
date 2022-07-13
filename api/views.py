@@ -31,15 +31,15 @@ from .models import Catalog
 # AttributeName
 @api_view(['GET'])
 def AttributeNameGet(request):
-    object = AttributeName.objects.all()
-    serializer = AttributeNameS(object, many=True)
+    data = AttributeName.objects.all()
+    serializer = AttributeNameS(data, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def AttributeNameGetDet(request, pk):
-    object = AttributeName.objects.get(id=pk)
-    serializer = AttributeNameS(object, many=False)
+    data = AttributeName.objects.get(id=pk)
+    serializer = AttributeNameS(data, many=False)
     return Response(serializer.data)
 
 
@@ -47,30 +47,30 @@ def AttributeNameGetDet(request, pk):
 
 @api_view(['GET'])
 def AttributeValueGet(request):
-    object = AttributeValue.objects.all()
-    serializer = AttributeValueS(object, many=True)
+    data = AttributeValue.objects.all()
+    serializer = AttributeValueS(data, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def AttributeValueGetDet(request, pk):
-    object = AttributeValue.objects.get(id=pk)
-    serializer = AttributeValueS(object, many=False)
+    data = AttributeValue.objects.get(id=pk)
+    serializer = AttributeValueS(data, many=False)
     return Response(serializer.data)
 
 
 # Attribute
 @api_view(['GET'])
 def AttributeGet(request):
-    object = Attribute.objects.all()
-    serializer = AttributeS(object, many=True)
+    data = Attribute.objects.all()
+    serializer = AttributeS(data, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def AttributeGetDet(request, pk):
-    object = Attribute.objects.get(id=pk)
-    serializer = AttributeS(object, many=False)
+    data = Attribute.objects.get(id=pk)
+    serializer = AttributeS(data, many=False)
     return Response(serializer.data)
 
 
@@ -78,15 +78,15 @@ def AttributeGetDet(request, pk):
 
 @api_view(['GET'])
 def ProductGet(request):
-    object = Product.objects.all()
-    serializer = ProductS(object, many=True)
+    data = Product.objects.all()
+    serializer = ProductS(data, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def ProductGetDet(request, pk):
-    object = Product.objects.get(id=pk)
-    serializer = ProductS(object, many=False)
+    data = Product.objects.get(id=pk)
+    serializer = ProductS(data, many=False)
     return Response(serializer.data)
 
 
@@ -94,15 +94,15 @@ def ProductGetDet(request, pk):
 
 @api_view(['GET'])
 def ProductAttributesGet(request):
-    object = ProductAttributes.objects.all()
-    serializer = ProductAttributesS(object, many=True)
+    data = ProductAttributes.objects.all()
+    serializer = ProductAttributesS(data, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def ProductAttributesGetDet(request, pk):
-    object = ProductAttributes.objects.get(id=pk)
-    serializer = ProductAttributesS(object, many=False)
+    data = ProductAttributes.objects.get(id=pk)
+    serializer = ProductAttributesS(data, many=False)
     return Response(serializer.data)
 
 
@@ -110,15 +110,15 @@ def ProductAttributesGetDet(request, pk):
 
 @api_view(['GET'])
 def ImageGet(request):
-    object = Image.objects.all()
-    serializer = ImageS(object, many=True)
+    data = Image.objects.all()
+    serializer = ImageS(data, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def ImageGetDet(request, pk):
-    object = Image.objects.get(id=pk)
-    serializer = ImageS(object, many=False)
+    data = Image.objects.get(id=pk)
+    serializer = ImageS(data, many=False)
     return Response(serializer.data)
 
 
@@ -126,15 +126,15 @@ def ImageGetDet(request, pk):
 
 @api_view(['GET'])
 def ProductImageGet(request):
-    object = ProductImage.objects.all()
-    serializer = ProductImageS(object, many=True)
+    data = ProductImage.objects.all()
+    serializer = ProductImageS(data, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def ProductImageGetDet(request, pk):
-    object = ProductImage.objects.get(id=pk)
-    serializer = ProductImageS(object, many=False)
+    data = ProductImage.objects.get(id=pk)
+    serializer = ProductImageS(data, many=False)
     return Response(serializer.data)
 
 
@@ -142,15 +142,15 @@ def ProductImageGetDet(request, pk):
 
 @api_view(['GET'])
 def CatalogGet(request):
-    object = Catalog.objects.all()
-    serializer = CatalogS(object, many=True)
+    data = Catalog.objects.all()
+    serializer = CatalogS(data, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def CatalogGetDet(request, pk):
-    object = Catalog.objects.get(id=pk)
-    serializer = CatalogS(object, many=False)
+    data = Catalog.objects.get(id=pk)
+    serializer = CatalogS(data, many=False)
     return Response(serializer.data)
 
 
@@ -158,71 +158,79 @@ def CatalogGetDet(request, pk):
 @api_view(['POST'])
 @parser_classes([JSONParser])
 def PostData(request):
-    finalAN: list = []
-    finalAV: list = []
-    finalA: list = []
-    finalP: list = []
-    finalPA: list = []
-    finalI: list = []
-    finalPI: list = []
-    finalC: list = []
+    final_an: list = []
+    final_av: list = []
+    final_a: list = []
+    final_p: list = []
+    final_pa: list = []
+    final_i: list = []
+    final_pi: list = []
+    final_c: list = []
 
     data = request.data
 
-    for object in data:
-        if "AttributeName" in object:
-            finalAN.append(object['AttributeName'])
+    for element in data:
+        if "AttributeName" in element:
+            final_an.append(element['AttributeName'])
 
-        elif "AttributeValue" in object:
-            finalAV.append(object['AttributeValue'])
+        elif "AttributeValue" in element:
+            final_av.append(element['AttributeValue'])
 
-        elif "Attribute" in object:
-            finalA.append(object['Attribute'])
+        elif "Attribute" in element:
+            final_a.append(element['Attribute'])
 
-        elif "Product" in object:
-            finalP.append(object['Product'])
+        elif "Product" in element:
+            final_p.append(element['Product'])
 
-        elif "ProductAttributes" in object:
-            finalPA.append(object['ProductAttributes'])
+        elif "ProductAttributes" in element:
+            final_pa.append(element['ProductAttributes'])
 
-        elif "Image" in object:
-            finalI.append(object['Image'])
+        elif "Image" in element:
+            final_i.append(element['Image'])
 
-        elif "ProductImage" in object:
-            finalPI.append(object['ProductImage'])
+        elif "ProductImage" in element:
+            final_pi.append(element['ProductImage'])
 
-        elif "Catalog" in object:
-            finalC.append(object['Catalog'])
+        elif "Catalog" in element:
+            final_c.append(element['Catalog'])
 
-    serializer1 = AttributeNameS(data=finalAN, many=True)
+    data = final_an
+    dict_1 = {item["id"]: item for item in data}
+    for d in data:
+        dict_1[d["id"]].update(d)
+    final_an = list(dict_1.values())
+    serializer1 = AttributeNameS(data=final_an, many=True)
     serializer1.is_valid(raise_exception=True)
     serializer1.save()
 
-    serializer2 = AttributeValueS(data=finalAV, many=True)
+    serializer2 = AttributeValueS(data=final_av, many=True)
     serializer2.is_valid(raise_exception=True)
     serializer2.save()
 
     # django.db.utils.OperationalError: table api_attribute has no column named hodnota_atributu_id
-    serializer3 = AttributeS(data=finalA, many=True)
+
+    serializer3 = AttributeS(data=final_a, many=True)
     serializer3.is_valid(raise_exception=True)
     serializer3.save()
 
-    serializer4 = ProductS(data=finalP, many=True)
+    serializer4 = ProductS(data=final_p, many=True)
     serializer4.is_valid(raise_exception=True)
     serializer4.save()
     # Field 'id' expected a number but got ()
-    serializer5 = ProductAttributesS(data=finalPA, many=True)
+
+    serializer5 = ProductAttributesS(data=final_pa, many=True)
     serializer5.is_valid(raise_exception=True)
     serializer5.save()
 
-    serializer6 = ImageS(data=finalI, many=True)
+    serializer6 = ImageS(data=final_i, many=True)
     serializer6.is_valid(raise_exception=True)
-    serializer6.save()
+    # serializer6.save()
 
-    serializer7 = ProductImageS(data=finalPI, many=True)
+    serializer7 = ProductImageS(data=final_pi, many=True)
     serializer7.is_valid(raise_exception=True)
     serializer7.save()
+
+    serializer8 = CatalogS(data=final_c, many=True)
+    serializer8.is_valid(raise_exception=True)
+    serializer8.save()
     return Response("OK")
-    # serializer8 = CatalogS(data=finalC, many=True)
-    # serializer8.is_valid(raise_exception=True)
-    # serializer8.save()

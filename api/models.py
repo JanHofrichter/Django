@@ -20,7 +20,7 @@ class AttributeValue(models.Model):
     def __str__(self):
         return self
 
-
+""
 class Attribute(models.Model):
     id = models.IntegerField(primary_key=True)
     objects = None
