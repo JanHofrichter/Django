@@ -25,9 +25,6 @@ from .serializers import CatalogS
 from .models import Catalog
 
 
-# import json
-
-
 # AttributeName
 @api_view(['GET'])
 def AttributeNameGet(request):
@@ -154,7 +151,7 @@ def CatalogGetDet(request, pk):
     return Response(serializer.data)
 
 
-def mergeID(x):
+def mergeI_el_id(x):
     data = x
     dict_1 = {item["id"]: item for item in data}
     for d in data:
@@ -202,38 +199,48 @@ def PostData(request):
         elif "Catalog" in element:
             final_c.append(element['Catalog'])
 
-    serializer1 = AttributeNameS(data=mergeID(final_an), many=True)
-    serializer1.is_valid(raise_exception=True)
-    serializer1.save()
+# AttributeName
+    serializer_an = AttributeNameS(data=mergeI_el_id(final_an), many=True)
+    serializer_an.is_valid(raise_exception=True)
+    serializer_an.save()
 
-    serializer2 = AttributeValueS(data=final_av, many=True)
-    serializer2.is_valid(raise_exception=True)
-    serializer2.save()
+# AttributeValue
+    serializer_av = AttributeValueS(data=mergeI_el_id(final_av), many=True)
+    serializer_av.is_valid(raise_exception=True)
+    serializer_av.save()
 
-    # django.db.utils.OperationalError: table api_attribute has no column named hodnota_atributu_id
 
-    serializer3 = AttributeS(data=final_a, many=True)
-    serializer3.is_valid(raise_exception=True)
-    serializer3.save()
+# django.db.utils.OperationalError: table api_attribute has no column named hodnota_atributu_id
+# Attribute
+    serializer_a = AttributeS(data=mergeI_el_id(final_a), many=True)
+    serializer_a.is_valid(raise_exception=True)
+    serializer_a.save()
 
-    serializer4 = ProductS(data=final_p, many=True)
-    serializer4.is_valid(raise_exception=True)
-    serializer4.save()
-    # Field 'id' expected a number but got ()
+# Product
+    serializer_p = ProductS(data=mergeI_el_id(final_p), many=True)
+    serializer_p.is_valid(raise_exception=True)
+    serializer_p.save()
 
-    serializer5 = ProductAttributesS(data=final_pa, many=True)
-    serializer5.is_valid(raise_exception=True)
-    serializer5.save()
+# Field 'id' expected a number but got ()
+# ProductAttributes
+#     serializer_pa = ProductAttributesS(data=mergeI_el_id(final_pa), many=True)
+#     serializer_pa.is_valid(raise_exception=True)
+#     serializer_pa.save()
 
-    serializer6 = ImageS(data=final_i, many=True)
-    serializer6.is_valid(raise_exception=True)
-    # serializer6.save()
+# Image
+    serializer_i = ImageS(data=mergeI_el_id(final_i), many=True)
+    serializer_i.is_valid(raise_exception=True)
+    serializer_i.save()
 
-    serializer7 = ProductImageS(data=final_pi, many=True)
-    serializer7.is_valid(raise_exception=True)
-    serializer7.save()
+# django.db.utils.OperationalError: table api_productimage has no column named obrazek_id
+# ProductImage
+    serializer_pi = ProductImageS(data=mergeI_el_id(final_pi), many=True)
+    serializer_pi.is_valid(raise_exception=True)
+    serializer_pi.save()
 
-    serializer8 = CatalogS(data=final_c, many=True)
-    serializer8.is_valid(raise_exception=True)
-    serializer8.save()
+# Catalog
+#     serializer_c = CatalogS(data=mergeI_el_id(final_c), many=True)
+#     serializer_c.is_valid(raise_exception=True)
+#     serializer_c.save()
+
     return Response("OK")

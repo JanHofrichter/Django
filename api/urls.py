@@ -2,13 +2,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    #AttributeName
+    # AttributeName
     path('detail/AttributeName/', views.AttributeNameGet),
     path('detail/AttributeName/<str:pk>/', views.AttributeNameGetDet),
-    #AttributeValue
+    # AttributeValue
     path('detail/AttributeValue/', views.AttributeValueGet),
     path('detail/AttributeValue/<str:pk>/', views.AttributeValueGetDet),
-	#Attribute
+    # Attribute
     path('detail/Attribute/', views.AttributeGet),
     path('detail/Attribute/<str:pk>/', views.AttributeGetDet),
 
@@ -25,6 +25,5 @@ urlpatterns = [
     path('detail/ProductImage/<str:pk>/', views.ImageGetDet),
 
     path('import/', views.PostData),
-
 
 ]
