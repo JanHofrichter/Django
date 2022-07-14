@@ -27,6 +27,14 @@ Get object from Product model with ID 4
 ```
 curl -X GET http://localhost:8000/detail/Product/4/ 
 ```
+Get all objects from AttributeValue model
+```
+curl -X GET http://localhost:8000/detail/AttributeValue/ 
+```
+Get object from AttributeValue model with ID 15
+```
+curl -X GET http://localhost:8000/detail/AttributeValue/15/ 
+```
 Import all data in database
 ```
 curl -X POST \

@@ -3,38 +3,29 @@ from . import views
 
 urlpatterns = [
     # AttributeName
-    path('detail/AttributeName/', views.AttributeNameGet),
-    path('detail/AttributeName/<str:pk>/', views.AttributeNameGetDet),
-
+    path("detail/AttributeName/", views.attribute_name_det),
+    path("detail/AttributeName/<str:pk>/", views.Attribute_name_det_id),
     # AttributeValue
-    path('detail/AttributeValue/', views.AttributeValueGet),
-    path('detail/AttributeValue/<str:pk>/', views.AttributeValueGetDet),
-
+    path("detail/AttributeValue/", views.attribute_value_det),
+    path("detail/AttributeValue/<str:pk>/", views.attribute_value_det_id),
     # Attribute
-    path('detail/Attribute/', views.AttributeGet),
-    path('detail/Attribute/<str:pk>/', views.AttributeGetDet),
-
+    path("detail/Attribute/", views.attribute_det),
+    path("detail/Attribute/<str:pk>/", views.attribute_det_id),
     # Product
-    path('detail/Product/', views.ProductGet),
-    path('detail/Product/<str:pk>/', views.ProductGetDet),
-
+    path("detail/Product/", views.product_det),
+    path("detail/Product/<str:pk>/", views.product_det_id),
     # ProductAttributes
-    path('detail/ProductAttributes/', views.ProductAttributesGet),
-    path('detail/ProductAttributes/<str:pk>/', views.ProductAttributesGetDet),
-
+    path("detail/ProductAttributes/", views.product_attributes_det),
+    path("detail/ProductAttributes/<str:pk>/", views.product_attributes_det_id),
     # Image
-    path('detail/Image/', views.ImageGet),
-    path('detail/Image/<str:pk>/', views.ImageGetDet),
-
+    path("detail/Image/", views.image_det),
+    path("detail/Image/<str:pk>/", views.image_det_id),
     # ProductImage
-    path('detail/ProductImage/', views.ProductImageGet),
-    path('detail/ProductImage/<str:pk>/', views.ProductImageGetDet),
-
+    path("detail/ProductImage/", views.product_image_det),
+    path("detail/ProductImage/<str:pk>/", views.product_image_det_id),
     # Catalog
-    path('detail/Catalog/', views.CatalogGet),
-    path('detail/Catalog/<str:pk>/', views.CatalogGetDet),
-
+    path("detail/Catalog/", views.catalog_det),
+    path("detail/Catalog/<str:pk>/", views.catalog_det_id),
     # import
-    path('import/', views.post_data),
-
+    path("import/", views.post_data),
 ]

@@ -12,25 +12,25 @@ from .models import Catalog
 class AttributeNameS(serializers.ModelSerializer):
     class Meta:
         model = AttributeName
-        fields = '__all__'
+        fields = "__all__"
 
 
 class AttributeValueS(serializers.ModelSerializer):
     class Meta:
         model = AttributeValue
-        fields = '__all__'
+        fields = "__all__"
 
 
 class AttributeS(serializers.ModelSerializer):
     class Meta:
         model = Attribute
-        fields = '__all__'
+        fields = "__all__"
 
 
 class ProductS(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = "__all__"
 
 
 class ProductAttributesS(serializers.ModelSerializer):
@@ -38,22 +38,22 @@ class ProductAttributesS(serializers.ModelSerializer):
 
     class Meta:
         model = ProductAttributes
-        fields = '__all__'
+        fields = "__all__"
 
 
 class ImageS(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = '__all__'
+        fields = "__all__"
 
 
 class ProductImageS(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
-        fields = '__all__'
+        fields = "__all__"
 
 
 class CatalogS(serializers.ModelSerializer):
     class Meta:
         model = Catalog
-        fields = '__all__'
+        fields = "__all__"
