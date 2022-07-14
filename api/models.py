@@ -80,9 +80,9 @@ class Catalog(models.Model):
     objects = None
     id = models.IntegerField(primary_key=True)
     nazev = models.CharField(max_length=200, blank=True)
-    obrazek_id = models.IntegerField(blank=True, null=False)
-    products_ids = models.JSONField()
-    attributes_ids = models.JSONField()
+    obrazek_id = models.IntegerField(blank=True, null=True)
+    products_ids = models.JSONField(blank=True, null=True)
+    attributes_ids = models.JSONField(blank=True, null=True)
 
     def __str__(self):
         return self

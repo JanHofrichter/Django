@@ -41,7 +41,6 @@ def AttributeNameGetDet(request, pk):
 
 
 # AttributeValue
-
 @api_view(['GET'])
 def AttributeValueGet(request):
     data = AttributeValue.objects.all()
@@ -72,7 +71,6 @@ def AttributeGetDet(request, pk):
 
 
 # Product
-
 @api_view(['GET'])
 def ProductGet(request):
     data = Product.objects.all()
@@ -88,7 +86,6 @@ def ProductGetDet(request, pk):
 
 
 # ProductAttributes
-
 @api_view(['GET'])
 def ProductAttributesGet(request):
     data = ProductAttributes.objects.all()
@@ -104,7 +101,6 @@ def ProductAttributesGetDet(request, pk):
 
 
 # Image
-
 @api_view(['GET'])
 def ImageGet(request):
     data = Image.objects.all()
@@ -120,7 +116,6 @@ def ImageGetDet(request, pk):
 
 
 # ProductImage
-
 @api_view(['GET'])
 def ProductImageGet(request):
     data = ProductImage.objects.all()
@@ -136,7 +131,6 @@ def ProductImageGetDet(request, pk):
 
 
 # Catalog
-
 @api_view(['GET'])
 def CatalogGet(request):
     data = Catalog.objects.all()
@@ -160,7 +154,7 @@ def collect_attributes_by_id(x):
 
 
 @api_view(['POST'])
-def PostData(request):
+def post_data(request):
     final_an: list = []
     final_av: list = []
     final_a: list = []
