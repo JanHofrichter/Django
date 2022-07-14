@@ -81,16 +81,9 @@ class Catalog(models.Model):
     id = models.IntegerField(primary_key=True)
     nazev = models.CharField(max_length=200, blank=True)
     obrazek_id = models.IntegerField(blank=True, null=False)
+    products_ids = models.JSONField()
+    attributes_ids = models.JSONField()
 
     def __str__(self):
         return self
 
-
-class Catalog2(models.Model):
-    # products_ids = models.ForeignKey(Catalog, null=True, on_delete=models.SET_NULL, related_name="first")
-    # attributes_ids = models.ForeignKey(Catalog, null=True, on_delete=models.SET_NULL, related_name="second")
-    products_ids = models.ForeignKey(Catalog)
-    attributes_ids = models.ForeignKey(Catalog)
-
-    def __str__(self):
-        return self

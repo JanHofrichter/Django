@@ -151,7 +151,7 @@ def CatalogGetDet(request, pk):
     return Response(serializer.data)
 
 
-def mergeI_el_id(x):
+def collect_attributes_by_id(x):
     data = x
     dict_1 = {item["id"]: item for item in data}
     for d in data:
@@ -159,9 +159,7 @@ def mergeI_el_id(x):
     return list(dict_1.values())
 
 
-#
 @api_view(['POST'])
-@parser_classes([JSONParser])
 def PostData(request):
     final_an: list = []
     final_av: list = []
@@ -199,44 +197,43 @@ def PostData(request):
         elif "Catalog" in element:
             final_c.append(element['Catalog'])
 
-# AttributeName
-    serializer_an = AttributeNameS(data=mergeI_el_id(final_an), many=True)
+    # AttributeName
+    serializer_an = AttributeNameS(data=collect_attributes_by_id(final_an), many=True)
     serializer_an.is_valid(raise_exception=True)
     serializer_an.save()
 
-# AttributeValue
-    serializer_av = AttributeValueS(data=mergeI_el_id(final_av), many=True)
+    # AttributeValue
+    serializer_av = AttributeValueS(data=collect_attributes_by_id(final_av), many=True)
     serializer_av.is_valid(raise_exception=True)
     serializer_av.save()
 
-
-# Attribute
-    serializer_a = AttributeS(data=mergeI_el_id(final_a), many=True)
+    # Attribute
+    serializer_a = AttributeS(data=collect_attributes_by_id(final_a), many=True)
     serializer_a.is_valid(raise_exception=True)
     serializer_a.save()
 
-# Product
-    serializer_p = ProductS(data=mergeI_el_id(final_p), many=True)
+    # Product
+    serializer_p = ProductS(data=collect_attributes_by_id(final_p), many=True)
     serializer_p.is_valid(raise_exception=True)
     serializer_p.save()
 
-# ProductAttributes
-    serializer_pa = ProductAttributesS(data=mergeI_el_id(final_pa), many=True)
+    # ProductAttributes
+    serializer_pa = ProductAttributesS(data=collect_attributes_by_id(final_pa), many=True)
     serializer_pa.is_valid(raise_exception=True)
     serializer_pa.save()
 
-# Image
-    serializer_i = ImageS(data=mergeI_el_id(final_i), many=True)
+    # Image
+    serializer_i = ImageS(data=collect_attributes_by_id(final_i), many=True)
     serializer_i.is_valid(raise_exception=True)
     serializer_i.save()
 
-# ProductImage
-    serializer_pi = ProductImageS(data=mergeI_el_id(final_pi), many=True)
+    # ProductImage
+    serializer_pi = ProductImageS(data=collect_attributes_by_id(final_pi), many=True)
     serializer_pi.is_valid(raise_exception=True)
     serializer_pi.save()
 
-# Catalog
-    serializer_c = CatalogS(data=mergeI_el_id(final_c), many=True)
+    # Catalog
+    serializer_c = CatalogS(data=collect_attributes_by_id(final_c), many=True)
     serializer_c.is_valid(raise_exception=True)
     serializer_c.save()
 
