@@ -210,7 +210,6 @@ def PostData(request):
     serializer_av.save()
 
 
-# django.db.utils.OperationalError: table api_attribute has no column named hodnota_atributu_id
 # Attribute
     serializer_a = AttributeS(data=mergeI_el_id(final_a), many=True)
     serializer_a.is_valid(raise_exception=True)
@@ -221,26 +220,24 @@ def PostData(request):
     serializer_p.is_valid(raise_exception=True)
     serializer_p.save()
 
-# Field 'id' expected a number but got ()
 # ProductAttributes
-#     serializer_pa = ProductAttributesS(data=mergeI_el_id(final_pa), many=True)
-#     serializer_pa.is_valid(raise_exception=True)
-#     serializer_pa.save()
+    serializer_pa = ProductAttributesS(data=mergeI_el_id(final_pa), many=True)
+    serializer_pa.is_valid(raise_exception=True)
+    serializer_pa.save()
 
 # Image
     serializer_i = ImageS(data=mergeI_el_id(final_i), many=True)
     serializer_i.is_valid(raise_exception=True)
     serializer_i.save()
 
-# django.db.utils.OperationalError: table api_productimage has no column named obrazek_id
 # ProductImage
     serializer_pi = ProductImageS(data=mergeI_el_id(final_pi), many=True)
     serializer_pi.is_valid(raise_exception=True)
     serializer_pi.save()
 
 # Catalog
-#     serializer_c = CatalogS(data=mergeI_el_id(final_c), many=True)
-#     serializer_c.is_valid(raise_exception=True)
-#     serializer_c.save()
+    serializer_c = CatalogS(data=mergeI_el_id(final_c), many=True)
+    serializer_c.is_valid(raise_exception=True)
+    serializer_c.save()
 
     return Response("OK")

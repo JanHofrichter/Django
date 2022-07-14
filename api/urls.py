@@ -21,8 +21,11 @@ urlpatterns = [
     path('detail/Image/', views.ImageGet),
     path('detail/Image/<str:pk>/', views.ImageGetDet),
 
-    path('detail/ProductImage/', views.ImageGet),
-    path('detail/ProductImage/<str:pk>/', views.ImageGetDet),
+    path('detail/ProductImage/', views.ProductImageGet),
+    path('detail/ProductImage/<str:pk>/', views.ProductImageGetDet),
+
+    path('detail/Catalog/', views.CatalogGet),
+    path('detail/Catalog/<str:pk>/', views.CatalogGetDet),
 
     path('import/', views.PostData),
 

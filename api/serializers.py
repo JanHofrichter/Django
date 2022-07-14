@@ -20,6 +20,7 @@ class AttributeValueS(serializers.ModelSerializer):
         model = AttributeValue
         fields = '__all__'
 
+
 class AttributeS(serializers.ModelSerializer):
     class Meta:
         model = Attribute

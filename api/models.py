@@ -51,10 +51,6 @@ class ProductAttributes(models.Model):
     attribute = models.IntegerField(blank=False)
     product = models.IntegerField(blank=False)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
-        self.data = None
-
     def __str__(self):
         return self
 
@@ -90,6 +86,11 @@ class Catalog(models.Model):
         return self
 
 
-class Catalog_2(models.Model):
-    products_ids = models.ForeignKey(Catalog, null=True, on_delete=models.SET_NULL, related_name="first")
-    attributes_ids = models.ForeignKey(Catalog, null=True, on_delete=models.SET_NULL, related_name="second")
+class Catalog2(models.Model):
+    # products_ids = models.ForeignKey(Catalog, null=True, on_delete=models.SET_NULL, related_name="first")
+    # attributes_ids = models.ForeignKey(Catalog, null=True, on_delete=models.SET_NULL, related_name="second")
+    products_ids = models.ForeignKey(Catalog)
+    attributes_ids = models.ForeignKey(Catalog)
+
+    def __str__(self):
+        return self
