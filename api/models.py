@@ -55,8 +55,6 @@ class ProductImage(models.Model):
     nazev = models.CharField(max_length=200, blank=True)
 
 
-#class Extend(models.Model):
-    #products_ids = models.IntegerField()
 
 
 class Catalog(models.Model):
@@ -64,4 +62,6 @@ class Catalog(models.Model):
     objects = None
     nazev = models.CharField(max_length=200, blank=True)
     obrazek_id = models.IntegerField(blank=True, null=True)
-    #products_ids = models.ForeignKey(Extend, on_delete=models.CASCADE, unique=True)
+    products_ids = models.JSONField(blank=True)
+    attributes_ids = models.JSONField(blank=True)
+
