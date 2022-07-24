@@ -3,9 +3,14 @@ from .models import *
 
 
 class AttributeNames(serializers.ModelSerializer):
+    # nazev = serializers.CharField(source='name')
+    # kod = serializers.CharField(source='code')
+    # zobrazit = serializers.BooleanField(source='show')
+
     class Meta:
         model = AttributeName
         fields = "__all__"
+            #('id', 'nazev', 'kod', 'zobrazit')
 
 
 class AttributeValues(serializers.ModelSerializer):

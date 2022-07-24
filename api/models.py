@@ -4,9 +4,9 @@ from django.db import models
 class AttributeName(models.Model):
     DoesNotExist = None
     objects = None
-    nazev = models.CharField(max_length=200, blank=True)
-    kod = models.CharField(max_length=200, blank=True)
-    zobrazit = models.BooleanField(default=False)
+    name = models.CharField(max_length=200, blank=True)
+    code = models.CharField(max_length=200, blank=True)
+    show = models.BooleanField(default=False)
 
 
 class AttributeValue(models.Model):
