@@ -135,6 +135,7 @@ def post_data(request):
     final_i: list = []
     final_pi: list = []
     final_c: list = []
+    final_result: list = []
 
     # Check if data format is valid
     if not ((type(request.data) == list) and (type(request.data[0]) == dict)):
@@ -171,40 +172,56 @@ def post_data(request):
     serializer_an = AttributeNames(data=collect_attributes_by_id(final_an), many=True)
     serializer_an.is_valid(raise_exception=True)
     serializer_an.save()
+    final_result.append("AttributeNames :")
+    final_result.append(serializer_an.data)
 
     # Save final_av in AttributeValue
     serializer_av = AttributeValues(data=collect_attributes_by_id(final_av), many=True)
     serializer_av.is_valid(raise_exception=True)
     serializer_av.save()
+    final_result.append("AttributeValue :")
+    final_result.append(serializer_av.data)
 
     # Save final_a in Attribute
     serializer_a = Attributes(data=collect_attributes_by_id(final_a), many=True)
     serializer_a.is_valid(raise_exception=True)
     serializer_a.save()
+    final_result.append("Attribute :")
+    final_result.append(serializer_a.data)
 
     # Save final_p in Product
     serializer_p = Products(data=collect_attributes_by_id(final_p), many=True)
     serializer_p.is_valid(raise_exception=True)
     serializer_p.save()
+    final_result.append("Product :")
+    final_result.append(serializer_p.data)
 
     # Save final_pa in ProductAttributes
     serializer_pa = ProductAttributess(data=collect_attributes_by_id(final_pa), many=True)
     serializer_pa.is_valid(raise_exception=True)
     serializer_pa.save()
+    final_result.append("ProductAttributes :")
+    final_result.append(serializer_pa.data)
 
     # Save final_i in Image
     serializer_i = Images(data=collect_attributes_by_id(final_i), many=True)
     serializer_i.is_valid(raise_exception=True)
     serializer_i.save()
+    final_result.append("Image :")
+    final_result.append(serializer_i.data)
 
     # Save final_pi in ProductImage
     serializer_pi = ProductImages(data=collect_attributes_by_id(final_pi), many=True)
     serializer_pi.is_valid(raise_exception=True)
     serializer_pi.save()
+    final_result.append("ProductImage :")
+    final_result.append(serializer_pi.data)
 
     # Save final_c in Catalog
     serializer_c = Catalogs(data=collect_attributes_by_id(final_c), many=True)
     serializer_c.is_valid(raise_exception=True)
     serializer_c.save()
+    final_result.append("Catalog :")
+    final_result.append(serializer_c.data)
 
-    return Response("Import done")
+    return Response(final_result)
