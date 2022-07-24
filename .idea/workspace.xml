@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cf15f34-ddc5-4cea-83b0-5a895485d849" name="Changes" comment="Improvement of Responses">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    <list default="true" id="9cf15f34-ddc5-4cea-83b0-5a895485d849" name="Changes" comment="Adding updated requirements">
+      <change beforePath="$PROJECT_DIR$/api/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/migrations/0001_initial.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658678700053</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Adding updated requirements">
+      <created>1658682964884</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1658682964884</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,6 +229,7 @@
     <MESSAGE value="Dynamic urls and views, when giving non existing ID, it does not throw an error" />
     <MESSAGE value="DB constraint fixed and using Django intern ID" />
     <MESSAGE value="Improvement of Responses" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improvement of Responses" />
+    <MESSAGE value="Adding updated requirements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding updated requirements" />
   </component>
 </project>
